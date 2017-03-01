@@ -1,0 +1,10 @@
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\DAL.dll.config
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\DAL.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\DAL.pdb
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\obj\Debug\DAL.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\DAL\obj\Debug\DAL.pdb

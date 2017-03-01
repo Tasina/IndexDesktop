@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SearchDesktopModelStoreContainer" CdmEntityContainer="SearchDesktopEntities1">
+    <EntitySetMapping Name="Document">
+      <EntityTypeMapping TypeName="SearchDesktopModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Term">
+      <EntityTypeMapping TypeName="SearchDesktopModel.Term">
+        <MappingFragment StoreEntitySet="Term">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Index">
+      <EntityTypeMapping TypeName="SearchDesktopModel.Index">
+        <MappingFragment StoreEntitySet="Index">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="TermId" ColumnName="TermId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

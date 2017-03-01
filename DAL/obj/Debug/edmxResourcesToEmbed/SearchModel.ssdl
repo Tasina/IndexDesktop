@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SearchDesktopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SearchDesktop.dbo.Index' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Index">
+    <Key>
+      <PropertyRef Name="DocId" />
+      <PropertyRef Name="TermId" />
+      <PropertyRef Name="Position" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="TermId" Type="int" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Term">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Index_Document1">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="Index" Type="Self.Index" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Index">
+        <PropertyRef Name="DocId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Index_Term1">
+    <End Role="Term" Type="Self.Term" Multiplicity="1" />
+    <End Role="Index" Type="Self.Index" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Term">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Index">
+        <PropertyRef Name="TermId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SearchDesktopModelStoreContainer">
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Term" EntityType="Self.Term" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Index" EntityType="Self.Index" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Index].[DocId] AS [DocId], 
+    [Index].[TermId] AS [TermId], 
+    [Index].[Position] AS [Position]
+    FROM [dbo].[Index] AS [Index]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Index_Document1" Association="Self.FK_Index_Document1">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="Index" EntitySet="Index" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Index_Term1" Association="Self.FK_Index_Term1">
+      <End Role="Term" EntitySet="Term" />
+      <End Role="Index" EntitySet="Index" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

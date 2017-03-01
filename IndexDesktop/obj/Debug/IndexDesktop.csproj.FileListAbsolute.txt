@@ -1,0 +1,15 @@
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\IndexDesktop.exe.config
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\IndexDesktop.exe
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\IndexDesktop.pdb
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\obj\Debug\IndexDesktop.Main.resources
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\obj\Debug\IndexDesktop.Properties.Resources.resources
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\obj\Debug\IndexDesktop.csproj.GenerateResource.Cache
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\obj\Debug\IndexDesktop.exe
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\obj\Debug\IndexDesktop.pdb
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\obj\Debug\IndexDesktop.csprojResolveAssemblyReference.cache
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\DAL.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\EntityFramework.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\DAL.pdb
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\EntityFramework.xml
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tasin\Documents\Visual Studio 2015\Projects\IndexDesktop\IndexDesktop\bin\Debug\EntityFramework.SqlServer.xml

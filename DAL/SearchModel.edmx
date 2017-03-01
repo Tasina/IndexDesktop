@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SearchDesktopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SearchDesktop.dbo.Index' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Index">
+          <Key>
+            <PropertyRef Name="DocId" />
+            <PropertyRef Name="TermId" />
+            <PropertyRef Name="Position" />
+          </Key>
+          <Property Name="DocId" Type="int" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="Position" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Index_Document1">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="Index" Type="Self.Index" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Index">
+              <PropertyRef Name="DocId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Index_Term1">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Index" Type="Self.Index" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Index">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SearchDesktopModelStoreContainer">
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Term" EntityType="Self.Term" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Index" EntityType="Self.Index" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Index].[DocId] AS [DocId], 
+    [Index].[TermId] AS [TermId], 
+    [Index].[Position] AS [Position]
+    FROM [dbo].[Index] AS [Index]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Index_Document1" Association="Self.FK_Index_Document1">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Index" EntitySet="Index" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Index_Term1" Association="Self.FK_Index_Term1">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Index" EntitySet="Index" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SearchDesktopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Index" Relationship="Self.FK_Index_Document1" FromRole="Document" ToRole="Index" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Index" Relationship="Self.FK_Index_Term1" FromRole="Term" ToRole="Index" />
+        </EntityType>
+        <EntityType Name="Index">
+          <Key>
+            <PropertyRef Name="DocId" />
+            <PropertyRef Name="TermId" />
+            <PropertyRef Name="Position" />
+          </Key>
+          <Property Name="DocId" Type="Int32" Nullable="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Index_Document1" FromRole="Index" ToRole="Document" />
+          <NavigationProperty Name="Term" Relationship="Self.FK_Index_Term1" FromRole="Index" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_Index_Document1">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="Index" Type="Self.Index" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Index">
+              <PropertyRef Name="DocId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Index_Term1">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Index" Type="Self.Index" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Index">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SearchDesktopEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="Term" EntityType="Self.Term" />
+          <EntitySet Name="Index" EntityType="Self.Index" />
+          <AssociationSet Name="FK_Index_Document1" Association="Self.FK_Index_Document1">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Index" EntitySet="Index" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Index_Term1" Association="Self.FK_Index_Term1">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Index" EntitySet="Index" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SearchDesktopModelStoreContainer" CdmEntityContainer="SearchDesktopEntities1">
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="SearchDesktopModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Term">
+            <EntityTypeMapping TypeName="SearchDesktopModel.Term">
+              <MappingFragment StoreEntitySet="Term">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Index">
+            <EntityTypeMapping TypeName="SearchDesktopModel.Index">
+              <MappingFragment StoreEntitySet="Index">
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
